@@ -1,0 +1,53 @@
+.speakcontent{
+	height:120px;
+	width:400px;
+	border: thick double black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: .5em;
+	background-size:contain;
+	margin-top: 0;
+}
+
+.speakcontent .right{
+	margin-top:100px;
+	float:right;
+}
+
+.speakcontent .left{
+	float: left;
+}
+
+.speakcontent .user{
+	float:left;
+}
+
+.speakcontent .text{
+	margin-top:40px;
+	margin-left: 8px;
+}
+
+.oblock{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:550px;
+}
+
+.dtable{
+	display: table;
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+.drow{
+	display: table-row;
+}
+
+.drow p{
+	font-size: 20px;
+}
+
+.user p{
+	
+}

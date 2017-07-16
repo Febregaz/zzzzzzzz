@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<constant name="struts.multipart.maxSize" value="100000000" />
+	<constant name="struts.allowed.action.names" value="[a-zA-Z0-9._!/\-]*"></constant>
+	<constant name="struts.il8n.encoding" value="UTF-8"></constant>
+	<package name="default" extends="struts-default">
+		<action name="enn" class="action.EnnAction">
+			<result name="success">/view/en.jsp</result>
+		</action>
+		<action name="login" class="action.LoggAction">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="uplo" class="action.UploaAction">
+			<result name="success">/teacher/uplo.jsp</result>   <!-- 下拉框二级 -->
+		</action>
+		<action name="op" class="action.OpAction">
+			<result name="success">/teacher/option.jsp</result>
+		</action>
+		<action name="option" class="action.OptionAction">
+			<result name="success" type="chain"> op  </result>
+		</action>
+		<action name="chuti" class="action.ChutiAction">
+			<result name="success">/teacher/chuti.jsp</result>
+		</action>
+		<action name="tri" class="action.TriAction">
+			<result name="success">/view/ziliao.jsp</result>
+		</action>
+		<action name="addt" class="action.AddtAction">
+		
+			<result name="success" type="chain">tri</result>
+		</action>
+		<action name="so" class="action.SosoAction">
+			<result name="success">/view/sos.jsp</result>
+		</action>
+		<action name="zhuce" class="action.ZhuceAction">
+			<result name="success">/index.jsp</result>
+			<result name="failer">/view/zhuce.jsp</result>
+
+		</action>
+		<!-- 外来action -->
+		<action name="addcomment" class="action.CommentAction" method="add">
+			<result name="Add_Success">/view/en.jsp</result>
+		</action>
+		<action name="adminall" class="action.AdminAction" method="query">
+			<result name="Admin_Query_Success">/AdminResult.jsp</result>
+		</action>
+		<action name="adminadd" class="action.AdminAction" method="add">
+			<result name="Add_Success" type="chain">adminall</result>
+		</action>
+		<action name="adelete" class="action.AdminAction" method="delete">
+			<result type="stream" name="Delete_Success">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="amodify" class="action.AdminAction" method="modify">
+			<result name="Modify_Success" type="chain">adminall</result>
+		</action>
+		<action name="admincommentall" class="action.CommentAction"
+			method="query2">
+			<result name="success">/CommentResult.jsp</result>
+		</action>
+		<action name="uploadd" class="action.UploaddAction" method="upload">
+			<result name="success">/UploadSuccess.jsp</result>
+			<result name="input">/VideoUpload.jsp</result>
+		</action>
+		<action name="videoall" class="action.VideoAction" method="query">
+			<result name="Video_Query_Success">/VideoResult.jsp</result>
+		</action>
+		<action name="vdelete" class="action.VdeleteAction" method="delete">
+			<result name="success" type="chain">videoall</result>
+		</action>
+		<action name="admingo" class="action.AdminAction" method="go">
+			<result name="success">/Admin/page/index.html</result>
+		</action>
+		<action name="logout" class="action.AdminAction" method="out">
+			<result name="success">/view/login.jsp</result>
+		</action>
+		<action name="select" class="action.AdminAction" method="banji">
+			<result name="success">/personstu.jsp</result>
+		</action>
+		<action name="if" class="action.AdminAction" method="iff">
+			<result name="student" type="chain">select</result>
+			<result name="teacher" type="chain">op</result>
+			<result name="admin" type="chain">admingo</result>
+		</action>
+		<action name="admincommentdelete" class="action.CommentAction"
+			method="delete">
+			<result type="stream" name="Delete_Success">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 外来action -->
+	</package>
+
+
+	<package name="jsondemo" extends="json-default">
+		<action name="list" class="action.ListaAction">
+			<result type="json" />
+		</action>
+		<action name="uplob" class="action.UplobAction">
+			<result type="json" />
+		</action>
+		<action name="yanzheng" class="action.YanzhengAction">
+			<result type="json" />
+		</action>
+		<action name="buy" class="action.BuyAction">
+			<result type="json" />
+		</action>
+
+		<action name="commentall" class="action.CommentAction" method="query">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+	</package>
+	<package name="updemo" extends="struts-default">
+		<action name="upload" class="action.UploadAction">
+			<result name="success" type="chain">uplo</result>
+
+		</action>
+	</package>
+
+</struts>    
